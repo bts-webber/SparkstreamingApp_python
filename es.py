@@ -19,7 +19,8 @@ class ES(object):
         self.es_connect.create(index_name,type_name,body)
     def exits_index(self, index_name):
         return self.es_connect.indices.exists(index_name)
-    def pop_null(self,record):
+    @staticmethod
+    def pop_null(record):
         for key in record.keys():
             if not record[key]:
                 record.pop(key)
