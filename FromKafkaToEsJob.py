@@ -1,3 +1,4 @@
+from __future__ import print_function
 from get_ssc import get_ssc
 from Serialization import pyAvro as Avro
 from Serialization import utf8_decoder
@@ -9,6 +10,7 @@ class FromKafkaToEsJob(object):
         self.app_conf=conf["App"]["FromKafkaToEsJob"]
         self.schema = Avro.getSchema(self.app_conf["schema_file"])
     def startJob(self):
+        print("Start Job!")
         ssc=get_ssc(self.app_conf)
         zookeeper=self.conf["global"]["zookeeper"]
         in_topic=self.app_conf["in_topic"]
