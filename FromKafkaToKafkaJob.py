@@ -16,7 +16,7 @@ class FromKafkaToKafkaJob(object):
         in_topic=self.app_conf["in_topic"]
         in_topic_partitions=self.app_conf["in_topic_partitions"]
         topic={in_topic:in_topic_partitions}
-        kvs=KafkaUtils.createStream(ssc,zookeeper,self.app_conf["app_name"],topic,keyDecoder=utf8_decoder,valueDecoder=self.avro_decoder)
+        kvs=KafkaUtils.createStream(ssc,zookeeper,self.app_conf["app_name"],topic,keyDecoder=utf8_decoder,valueDecoder=lambda v :Avro.AvroToJson(v,self.schema))
         kvs.foreachRDD(
            lambda rdd: rdd.foreachPartition(self.Send_to_kafka)
         )
@@ -29,8 +29,3 @@ class FromKafkaToKafkaJob(object):
             recordJson=record[1]
             recordAvro=Avro.JsonToAvro(recordJson,self.schema)
             producer.send(out_topic,recordAvro)
-    def avro_decoder(self,s):
-        """Decode the avro as Json"""
-        if s is None:
-            return None
-        return Avro.AvroToJson(s,self.schema)
