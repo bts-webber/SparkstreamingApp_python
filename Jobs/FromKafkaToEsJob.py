@@ -1,9 +1,7 @@
 from __future__ import print_function
-from get_ssc import get_ssc
-from Serialization import pyAvro as Avro
-from Serialization import utf8_decoder
+from Utils import get_ssc,ES,utf8_decoder
+from Utils import fastAvro as Avro
 from pyspark.streaming.kafka import KafkaUtils
-from es import ES
 class FromKafkaToEsJob(object):
     def __init__(self,conf):
         self.conf=conf

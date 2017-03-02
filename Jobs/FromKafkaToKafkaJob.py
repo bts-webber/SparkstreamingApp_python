@@ -1,7 +1,6 @@
 from __future__ import print_function
-from get_ssc import get_ssc
-from Serialization import pyAvro as Avro
-from Serialization import utf8_decoder
+from Utils import get_ssc,utf8_decoder
+from Utils import fastAvro as Avro
 from pyspark.streaming.kafka import KafkaUtils
 from kafka import KafkaProducer
 class FromKafkaToKafkaJob(object):
