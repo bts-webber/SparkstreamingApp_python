@@ -1,6 +1,6 @@
 from fastavro import dump
 from fastavro.reader import read_data
-import pyavroc
+#import pyavroc
 import json,io,avro.schema,avro.io
 def utf8_decoder(s):
     """ Decode the unicode as UTF-8 """
@@ -49,19 +49,19 @@ class fastAvro(object):
         dump(buf, record, schema)
         avroRecord = buf.getvalue()
         return avroRecord
-class pyAvro(object):
-    ''''Serialization and Deserialization record using pyavroc.
-        <https://github.com/Byhiras/pyavroc'''
-    @staticmethod
-    def getSchema(path):
-        with open(path) as schemaFile:
-            return schemaFile.read()
-    @staticmethod
-    def AvroToJson(record, schema):
-        deserializer = pyavroc.AvroDeserializer(schema)
-        return deserializer.deserialize(record)
-    @staticmethod
-    def JsonToAvro(record, schema):
-        serializer = pyavroc.AvroSerializer(schema)
-        avroRecoed = serializer.serialize(record)
-        return avroRecoed
+#class pyAvro(object):
+#    ''''Serialization and Deserialization record using pyavroc.
+#       <https://github.com/Byhiras/pyavroc'''
+ #   @staticmethod
+ #   def getSchema(path):
+ #       with open(path) as schemaFile:
+ #           return schemaFile.read()
+ #   @staticmethod
+ #   def AvroToJson(record, schema):
+ #       deserializer = pyavroc.AvroDeserializer(schema)
+ #       return deserializer.deserialize(record)
+ #   @staticmethod
+ #   def JsonToAvro(record, schema):
+ #       serializer = pyavroc.AvroSerializer(schema)
+ #       avroRecoed = serializer.serialize(record)
+ #       return avroRecoed
