@@ -1,5 +1,5 @@
 {"global": {
-  "zookeeper": "zookeeper_host:2181"
+  "zookeeper": "zookeeper:2181"
 },
   "App":{
     "FromKafkaToKafkaJob":{
@@ -13,6 +13,24 @@
     "FromKafkaToEsJob":{
       "app_name":"FromKafkaToEs",
       "in_topic":"in_topic_name",
+      "in_topic_partitions":5,
+      "schema_file":"schema_file_name",
+      "index_name":"index_name",
+      "type_name":"type:name",
+      "elasticsearch":{
+        "connect": {
+            "hosts": ["es_host", "es_host"],
+            "maxsize": 25
+        },
+        "index": {
+            "number_of_shards": 6,
+            "number_of_replicas": 1
+        }
+      }
+    },
+    "WebDetectionJob":{
+      "app_name":"WebDetectionJob",
+      "in_topic":"avro-log-cnpc-kelaihttp",
       "in_topic_partitions":5,
       "schema_file":"schema_file_name",
       "index_name":"index_name",
