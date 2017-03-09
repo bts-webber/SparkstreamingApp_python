@@ -5,3 +5,7 @@ def get_ssc(AppConfig):
     sc = SparkContext(conf=conf)
     ssc = StreamingContext(sc, 20)
     return ssc
+def get_sc(AppConfig):
+    conf=SparkConf().setAppName(AppConfig["app_name"])
+    sc = SparkContext(conf=conf)
+    return sc
