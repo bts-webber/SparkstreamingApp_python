@@ -1,4 +1,4 @@
-####A program running on sparkstreaming.
+####A program running on spark.
 ####Consume data from kafka,then produce to kafka,or write to Elasticsearch.
 #Usage
 vim AppConfig.json
