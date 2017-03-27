@@ -30,6 +30,24 @@
     },
     "WebDetectionJob":{
       "app_name":"WebDetectionJob",
+      "in_topic":"topicname",
+      "in_topic_partitions":5,
+      "schema_file":"schema_file_name",
+      "index_name":"index_name",
+      "type_name":"type:name",
+      "elasticsearch":{
+        "connect": {
+            "hosts": ["es_host", "es_host"],
+            "maxsize": 25
+        },
+        "index": {
+            "number_of_shards": 6,
+            "number_of_replicas": 1
+        }
+      }
+    },
+    "WebshellDetectionJob":{
+      "app_name":"WebshellDetectionJob",
       "in_topic":"avro-log-cnpc-kelaihttp",
       "in_topic_partitions":5,
       "schema_file":"schema_file_name",
@@ -38,6 +56,26 @@
       "elasticsearch":{
         "connect": {
             "hosts": ["es_host", "es_host"],
+            "maxsize": 25
+        },
+        "index": {
+            "number_of_shards": 6,
+            "number_of_replicas": 1
+        },
+        "neo4j":{
+          "bolt":"bolt://ip:7687",
+          "user":"neo4j",
+          "password":"pass"
+        }
+      }
+    },
+    "FromHdfsJob":{
+      "app_name":"FromHdfsJob",
+      "index_name":"netflow-hdfs",
+      "type_name":"netflow",
+      "elasticsearch":{
+        "connect": {
+            "hosts": ["host1:9200", "host2:9200"],
             "maxsize": 25
         },
         "index": {
